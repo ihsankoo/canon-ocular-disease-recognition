@@ -6,8 +6,17 @@ from PIL import Image
 # Load the trained model
 model = tf.keras.models.load_model('fundus_disease_model.h5')
 
-# Define label names
-labels = ['N', 'D', 'G', 'C', 'A', 'H', 'M', 'O']
+# Define label names and their full forms
+labels = {
+    'N': 'No abnormalities detected',
+    'D': 'Diabetic Retinopathy',
+    'G': 'Glaucoma',
+    'C': 'Cataract',
+    'A': 'Age-related Macular Degeneration',
+    'H': 'Hypertension',
+    'M': 'Myopia',
+    'O': 'Other Diseases'
+}
 
 # Define a function to preprocess the uploaded images
 def preprocess_image(image, img_size=(224, 224)):
@@ -36,19 +45,26 @@ if left_image and right_image:
     right_pred = model.predict(right_input)
 
     # Interpret predictions
-    left_diseases = [labels[i] for i, val in enumerate(left_pred[0]) if val > 0.5]
-    right_diseases = [labels[i] for i, val in enumerate(right_pred[0]) if val > 0.5]
+    left_diseases = [labels[key] for i, (key, val) in enumerate(labels.items()) if left_pred[0][i] > 0.5]
+    right_diseases = [labels[key] for i, (key, val) in enumerate(labels.items()) if right_pred[0][i] > 0.5]
 
     # Display results
     st.subheader("Prediction Results")
+
     st.write("### Left Fundus:")
-    st.write(left_diseases if left_diseases else "No Disease Detected")
+    if left_diseases and 'No abnormalities detected' not in left_diseases:
+        st.markdown(f"<span style='color:red; font-weight:bold;'>Disease Detected: {', '.join(left_diseases)}!</span>", unsafe_allow_html=True)
+    else:
+        st.markdown("<span style='color:green; font-weight:bold;'>No abnormalities detected</span>", unsafe_allow_html=True)
 
     st.write("### Right Fundus:")
-    st.write(right_diseases if right_diseases else "No Disease Detected")
+    if right_diseases and 'No abnormalities detected' not in right_diseases:
+        st.markdown(f"<span style='color:red; font-weight:bold;'>Disease Detected: {', '.join(right_diseases)}!</span>", unsafe_allow_html=True)
+    else:
+        st.markdown("<span style='color:green; font-weight:bold;'>No abnormalities detected</span>", unsafe_allow_html=True)
 
     # Show images
-    st.image(left_img, caption="Left Fundus Image", use_column_width=True)
-    st.image(right_img, caption="Right Fundus Image", use_column_width=True)
+    st.image(left_img, caption="Left Fundus Image", use_container_width=True)
+    st.image(right_img, caption="Right Fundus Image", use_container_width=True)
 else:
     st.info("Please upload both Left and Right Fundus images.")
