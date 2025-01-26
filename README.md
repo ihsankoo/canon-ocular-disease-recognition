@@ -19,8 +19,8 @@ The **Fundus Disease Detection App** is a machine learning-powered tool for anal
 #### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/fundus-disease-detection.git
-   cd fundus-disease-detection
+   git clone https://github.com/ihsankoo/canon-ocular-disease-recognition.git
+   cd canon-ocular-disease-recognition
    ```
 2. Install dependencies:
    ```bash
