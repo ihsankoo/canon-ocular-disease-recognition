@@ -64,7 +64,7 @@ if left_image and right_image:
         st.markdown("<span style='color:green; font-weight:bold;'>No abnormalities detected</span>", unsafe_allow_html=True)
 
     # Show images
-    st.image(left_img, caption="Left Fundus Image", use_container_width=True)
-    st.image(right_img, caption="Right Fundus Image", use_container_width=True)
+    st.image(left_img, caption="Left Fundus Image", use_column_width=True)
+    st.image(right_img, caption="Right Fundus Image", use_column_width=True)
 else:
     st.info("Please upload both Left and Right Fundus images.")
