@@ -32,13 +32,13 @@ The **Fundus Disease Detection App** is a machine learning-powered tool for anal
    ```
 
 ### File Structure
-- `fundus_model_train.py`: Script for training the model on fundus image data.
+- `notebook.ipynb`: Script for training the model on fundus image data.
 - `app.py`: Streamlit app for uploading images and viewing predictions.
 - `fundus_disease_model.h5`: Trained deep learning model.
 - `README.md`: Documentation for the project.
 
 ### Model Training
-To train the model from scratch, use the `fundus_model_train.py` script. Ensure your dataset is structured correctly and update the `image_dir` path.
+To train the model from scratch, use the `notebook.ipynb` script. Ensure your dataset is structured correctly and update the `image_dir` path.
 
 ### Technologies
 - **TensorFlow/Keras**: For training and deploying the CNN model.
