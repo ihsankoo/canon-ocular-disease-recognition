@@ -40,11 +40,6 @@ The **Fundus Disease Detection App** is a machine learning-powered tool for anal
 ### Model Training
 To train the model from scratch, use the `notebook.ipynb` script. Ensure your dataset is structured correctly and update the `image_dir` path.
 
-### Model Deployment
-The trained model is currently deployed on AWS, making it accessible for testing. You can visit the demo at:
-http://44.200.73.145:8501/
-This live deployment allows users to upload their fundus images and receive disease predictions instantly.
-
 ### Technologies
 - **TensorFlow/Keras**: For training and deploying the CNN model.
 - **Streamlit**: For building the interactive UI.
